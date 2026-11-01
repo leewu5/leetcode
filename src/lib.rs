@@ -3,6 +3,8 @@ pub mod solutions {
     pub mod p0001_two_sum;
     pub mod p0002_add_two_numbers;
     pub mod p0003_length_of_longest_substring;
+    pub mod p0005_longest_palindrome;
+    pub mod p0380_randomized_set;
 }
 
 /// 常用函数
@@ -15,6 +17,8 @@ pub mod tests {
     pub mod p0001_two_sum;
     pub mod p0002_add_two_numbers;
     pub mod p0003_length_of_longest_substring;
+    pub mod p0005_longest_palindrome;
+    pub mod p0380_randomized_set;
 
     #[derive(PartialEq, Debug)]
     struct lee {
