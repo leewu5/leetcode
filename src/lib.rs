@@ -4,8 +4,9 @@ pub mod solutions {
     pub mod p0002_add_two_numbers;
     pub mod p0003_length_of_longest_substring;
     pub mod p0005_longest_palindrome;
-    pub mod p0380_randomized_set;
     pub mod p0018_four_sum;
+    pub mod p0023_merge_k_sorted_lists;
+    pub mod p0380_randomized_set;
 }
 
 /// 常用函数
@@ -19,11 +20,10 @@ pub mod tests {
     pub mod p0002_add_two_numbers;
     pub mod p0003_length_of_longest_substring;
     pub mod p0005_longest_palindrome;
-    pub mod p0380_randomized_set;
     pub mod p0018_four_sum;
+    pub mod p0023_merge_k_sorted_lists;
+    pub mod p0380_randomized_set;
 
     #[test]
-    pub fn test_my_thought() {
-        
-    }
+    pub fn test_my_thought() {}
 }

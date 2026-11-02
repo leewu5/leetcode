@@ -1,24 +1,31 @@
 /// 二分查找
-pub fn binary_search<T: Ord>(items: &Vec<T>, target: &T, left: usize, right: usize) -> Option<usize> {
+pub fn binary_search<T: Ord>(
+    items: &Vec<T>,
+    target: &T,
+    left: usize,
+    right: usize,
+) -> Option<usize> {
     if left > right {
         return None;
     }
     let mid = (left + right) / 2;
     if items[mid] < *target {
-        return binary_search(items, target, mid+1, right);
+        return binary_search(items, target, mid + 1, right);
     }
     if items[mid] > *target {
-        return binary_search(items, target, left, mid-1);
+        return binary_search(items, target, left, mid - 1);
     }
     return Some(mid);
 }
 
-pub fn quick_sort<T, F>(items: &mut [T], cmp: &F) 
-where 
+pub fn quick_sort<T, F>(items: &mut [T], cmp: &F)
+where
     F: Fn(&T, &T) -> bool,
 {
     let n = items.len();
-    if (n < 2) {return;}
+    if (n < 2) {
+        return;
+    }
     // pivot归位
     let mut j = 0;
     for i in 1..n {
