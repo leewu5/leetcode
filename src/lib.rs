@@ -5,6 +5,7 @@ pub mod solutions {
     pub mod p0003_length_of_longest_substring;
     pub mod p0005_longest_palindrome;
     pub mod p0380_randomized_set;
+    pub mod p0018_four_sum;
 }
 
 /// 常用函数
@@ -19,28 +20,10 @@ pub mod tests {
     pub mod p0003_length_of_longest_substring;
     pub mod p0005_longest_palindrome;
     pub mod p0380_randomized_set;
-
-    #[derive(PartialEq, Debug)]
-    struct lee {
-        x: i32,
-        y: i32
-    }
-
-    impl lee {
-        pub fn new(x: i32, y: i32) -> Self {
-            lee { x, y }
-        }
-    }
+    pub mod p0018_four_sum;
 
     #[test]
     pub fn test_my_thought() {
-        let mut v = vec![3, 1, 4, 2, 9];
-        quick_sort(&mut v, &|x, y| x < y);
-        assert_eq!(v, vec![1, 2, 3, 4, 9]);
-        quick_sort(&mut v, &|x, y| x > y);
-        assert_eq!(v, vec![9, 4, 3, 2, 1]);
-        let mut v = vec![lee::new(1, 2), lee::new(2, 1)];
-        quick_sort(&mut v, &|x: &lee, y: &lee| x.x < y.x);
-        assert_eq!(v, vec![lee::new(1, 2), lee::new(2, 1)]);
+        
     }
 }
