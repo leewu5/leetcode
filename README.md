@@ -29,16 +29,18 @@ src/solutions/p0001_two_sum.rs
 src/tests/p0001_two_sum.rs
 ```
 
-## 已完成题目
+## 已完成题目与算法
 
-| 题号 | 题目 | 主要思路 |
-| ---: | --- | --- |
-| 0001 | Two Sum（两数之和） | 哈希表 |
-| 0002 | Add Two Numbers（两数相加） | 链表模拟、进位 |
-| 0003 | Longest Substring Without Repeating Characters（无重复字符的最长子串） | 滑动窗口、哈希集合 |
-| 0005 | Longest Palindromic Substring（最长回文子串） | 动态规划 |
-| 0018 | 4Sum（四数之和） | 排序、回溯、去重 |
-| 0380 | Insert Delete GetRandom O(1) | 哈希表 + 动态数组 |
+| 题号 | 题目 | 算法 | 复杂度 |
+| ---: | --- | --- | --- |
+| 0001 | Two Sum（两数之和） | 哈希表记录已遍历元素，查找互补值 | 时间 `O(n)`，空间 `O(n)` |
+| 0002 | Add Two Numbers（两数相加） | 同时遍历两条链表，逐位相加并维护进位 | 时间 `O(max(m, n))`，空间 `O(max(m, n))` |
+| 0003 | Longest Substring Without Repeating Characters（无重复字符的最长子串） | 滑动窗口 + 哈希集合维护窗口内字符 | 时间 `O(n)`，空间 `O(n)` |
+| 0005 | Longest Palindromic Substring（最长回文子串） | 动态规划判断区间是否为回文串 | 时间 `O(n²)`，空间 `O(n²)` |
+| 0018 | 4Sum（四数之和） | 排序后固定前两个数，后两个数使用双指针，并跳过重复值 | 时间 `O(n³)`，空间 `O(log n)`（不计结果） |
+| 0380 | Insert Delete GetRandom O(1) | 哈希表保存下标，动态数组支持随机访问；删除时用末尾元素填补空位 | 插入/删除/随机均摊 `O(1)` |
+
+每道题的实现文件中也会保留对应的算法说明、关键步骤和复杂度注释。随着题目数量增加，如果表格变得过长，可以将每道题的详细思路拆到 `docs/` 目录，README 只保留索引和摘要。
 
 ## 运行测试
 
