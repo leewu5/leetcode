@@ -39,15 +39,14 @@ impl ListNode {
     }
 }
 
-/// 堆条目只比较节点值和来源链表编号，不需要为整条链表定义排序。
+/// 堆条目只按当前节点值比较，不需要为整条链表定义排序。
 struct HeapEntry {
-    list_index: usize,
     node: Box<ListNode>,
 }
 
 impl PartialEq for HeapEntry {
     fn eq(&self, other: &Self) -> bool {
-        self.node.val == other.node.val && self.list_index == other.list_index
+        self.node.val == other.node.val
     }
 }
 
@@ -61,10 +60,7 @@ impl PartialOrd for HeapEntry {
 
 impl Ord for HeapEntry {
     fn cmp(&self, other: &Self) -> Ordering {
-        self.node
-            .val
-            .cmp(&other.node.val)
-            .then_with(|| self.list_index.cmp(&other.list_index))
+        self.node.val.cmp(&other.node.val)
     }
 }
 
@@ -79,20 +75,17 @@ pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>>
     let mut min_heap = BinaryHeap::new();
 
     // 初始化堆：每条链表只放入头节点，空链表跳过。
-    for (list_index, node) in lists.into_iter().enumerate() {
+    for node in lists.into_iter() {
         if let Some(node) = node {
-            min_heap.push(Reverse(HeapEntry { list_index, node }));
+            min_heap.push(Reverse(HeapEntry { node }));
         }
     }
 
     let mut values = Vec::new();
     while let Some(Reverse(mut entry)) = min_heap.pop() {
-        // 保留来源编号，并将该链表的下一个节点作为新的候选项入堆。
+        // 将该链表的下一个节点作为新的候选项入堆。
         if let Some(next) = entry.node.next.take() {
-            min_heap.push(Reverse(HeapEntry {
-                list_index: entry.list_index,
-                node: next,
-            }));
+            min_heap.push(Reverse(HeapEntry { node: next }));
         }
         values.push(entry.node.val);
     }
