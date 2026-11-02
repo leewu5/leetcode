@@ -23,7 +23,7 @@ where
     F: Fn(&T, &T) -> bool,
 {
     let n = items.len();
-    if (n < 2) {
+    if n < 2 {
         return;
     }
     // pivot归位

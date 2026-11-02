@@ -4,7 +4,7 @@ use std::{
 };
 
 // Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
+#[derive(Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
@@ -39,28 +39,23 @@ impl ListNode {
     }
 }
 
-/// 堆条目只按当前节点值比较，不需要为整条链表定义排序。
-struct HeapEntry {
-    node: Box<ListNode>,
-}
-
-impl PartialEq for HeapEntry {
+impl PartialEq for ListNode {
     fn eq(&self, other: &Self) -> bool {
-        self.node.val == other.node.val
+        self.val == other.val
     }
 }
 
-impl Eq for HeapEntry {}
+impl Eq for ListNode {}
 
-impl PartialOrd for HeapEntry {
+impl PartialOrd for ListNode {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
         Some(self.cmp(other))
     }
 }
 
-impl Ord for HeapEntry {
+impl Ord for ListNode {
     fn cmp(&self, other: &Self) -> Ordering {
-        self.node.val.cmp(&other.node.val)
+        self.val.cmp(&other.val)
     }
 }
 
@@ -77,17 +72,17 @@ pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>>
     // 初始化堆：每条链表只放入头节点，空链表跳过。
     for node in lists.into_iter() {
         if let Some(node) = node {
-            min_heap.push(Reverse(HeapEntry { node }));
+            min_heap.push(Reverse(node));
         }
     }
 
     let mut values = Vec::new();
-    while let Some(Reverse(mut entry)) = min_heap.pop() {
+    while let Some(Reverse(mut node)) = min_heap.pop() {
         // 将该链表的下一个节点作为新的候选项入堆。
-        if let Some(next) = entry.node.next.take() {
-            min_heap.push(Reverse(HeapEntry { node: next }));
+        if let Some(next) = node.next.take() {
+            min_heap.push(Reverse(next));
         }
-        values.push(entry.node.val);
+        values.push(node.val);
     }
 
     ListNode::from_vec(values)
